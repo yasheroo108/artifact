@@ -6,7 +6,7 @@ import math
 st.title("Reverse Functions")
 
 st.markdown("`Made by Yash, Powered by Streamlit`") 
-st.markdown("""<a href="https://testytester.streamlit.app/">Surface Area and Volume</a>""", unsafe_allow_html=True)
+st.markdown("""<a href="https://artifact-main.streamlit.app/">Surface Area and Volume</a>""", unsafe_allow_html=True)
 
 mnmode = st.selectbox("Would you like to reverse volume or surface area?", ("Volume", "Surface Area"))
 
