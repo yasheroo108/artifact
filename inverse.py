@@ -3,7 +3,7 @@ import math
 
 #add that is answer is negative its impossible
 
-st.title("Reverse Functions")
+st.title("Inverse Functions")
 
 st.markdown("`Made by Yash, Powered by Streamlit`") 
 st.markdown("""<a href="https://artifact-main.streamlit.app/">Surface Area and Volume</a>""", unsafe_allow_html=True)
