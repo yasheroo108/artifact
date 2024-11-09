@@ -1,37 +1,43 @@
-import streamlit as st
+import streamlit as st 
 import math
 
+#importing streamlit library for UI and python math for math functions
+
 st.title("Volume and Surface Area Calculator")
+#title header
 
 st.markdown("`Made by Yash, Powered by Streamlit`") 
 st.markdown("""<a href="https://artifact-inverse.streamlit.app/">Inverse Functions</a>""", unsafe_allow_html=True)
+#uses html function to link to inverse functions page
 
 mnmode = st.selectbox("What would you like to calculate?", ("Volume", "Surface Area"))
-
-
+#diffreciates between the volume and surface area calculator
 if mnmode == "Volume":
 
   mode = st.selectbox("Which 3D shape's volume would you like to calculate?",("Prism", "Pyramid", "Cylinder", "Cone", "Sphere"))
-
+  #selects shape
   if mode == "Prism":
       base = st.number_input("Enter the number of sides your prism's base has", min_value=3)
-
+      #sets shape as prism, and says base has this many sides
       if base == 3:
           st.latex(r"V = \frac{lwh}{2}")
-          st.markdown("""<p style="text-align: center; padding-bottom: 10px;">l = base length, w = base width, H = prism height</p>""", unsafe_allow_html=True)
+          st.markdown("""<p style="text-align: center; padding-bottom: 10px;">l = base length, w = base width, h = prism height</p>""", unsafe_allow_html=True)
+          #explains every variable
           length = st.number_input("What is the height of the triangle?", min_value=0.01)
           width = st.number_input("What is the base of the triangle?", min_value=0.01)
           height = st.number_input("What is the height of your prism?", min_value=0.01)
+          #asks for all the variables needed for the calculation
           answer = (float(length) * float(width))/2 * float(height)
+          #calculates answer and  sets it as answer variable
           st.write("Your prism's volume is ", answer, " units³.")
-
+          #prints answer and includes the answer variable
       if base == 4:
           
         fourmode = st.selectbox("Do you have a common base or a trapezoid base?", ("Common", "Trapezoid"))
 
         if fourmode == "Trapezoid":
           st.latex(r"V = \frac{(H)(h)(a+b)}{2}")
-          st.markdown("""<p style="text-align: center; padding-bottom: 10px;">h = base height, a = top side, b = bottom side, H = prism height</p>""", unsafe_allow_html=True)
+          st.markdown("""<p style="text-align: center; padding-bottom: 10px;">h = base height, a = base top side, b = base bottom side, H = prism height</p>""", unsafe_allow_html=True)
           a = st.number_input("What is the length of the base's top side (a)?", min_value=0.01)
           b = st.number_input("What is the length of the base's bottom side (b)?", min_value=0.01)
           h = st.number_input("What is the height of the base?", min_value=0.01)
@@ -109,7 +115,7 @@ if mnmode == "Volume":
     circlemode = st.selectbox("Do you have the diameter or the radius?", ("Radius", "Diameter"))
 
     if circlemode == "Radius":
-      st.latex(r"V = r^2πh")
+      st.latex(r"V = πr^2h")
       st.markdown("""<p style="text-align: center; padding-bottom: 10px;">r = radius, h = height</p>""", unsafe_allow_html=True)
       radius = st.number_input("What is the radius of the base?", min_value=0.01)
       height = st.number_input("What is the height of the cylinder?", min_value=0.01)
@@ -117,7 +123,7 @@ if mnmode == "Volume":
       st.write("Your cylinder's volume is", answer, " units³.")
 
     if circlemode == "Diameter":
-      st.latex(r"V = (\frac{d}{2})^2πh")
+      st.latex(r"V = π(\frac{d}{2})^2h")
       st.markdown("""<p style="text-align: center; padding-bottom: 10px;">d = diameter, h = height</p>""", unsafe_allow_html=True)
       diameter = st.number_input("What is the diameter of the circle?", min_value=0.01)
       height = st.number_input("What is the cylinder's height?", min_value=0.01)
@@ -128,7 +134,7 @@ if mnmode == "Volume":
       circlemode = st.selectbox("Do you have the diameter or the radius?", ("Radius", "Diameter"))
 
       if circlemode == "Radius":
-          st.latex(r"V = \frac{r^2πh}{3}")
+          st.latex(r"V = \frac{πr^2h}{3}")
           st.markdown("""<p style="text-align: center; padding-bottom: 10px;">r = radius, h = height</p>""", unsafe_allow_html=True)
           radius = st.number_input("What is the radius of the base?", min_value=0.01)
           height = st.number_input("What is the height of the cylinder?", min_value=0.01)
@@ -136,7 +142,7 @@ if mnmode == "Volume":
           st.write("The volume of the cone is ", answer, " units³.")
 
       if circlemode == "Diameter":
-          st.latex(r"V = \frac{(\frac{d}{2})^2πh}{3}")
+          st.latex(r"V = \frac{π(\frac{d}{2})^2h}{3}")
           st.markdown("""<p style="text-align: center; padding-bottom: 10px;">d = diameter, h = height</p>""", unsafe_allow_html=True)
           diameter = st.number_input("What is the diameter of the base?", min_value=0.01)
           height = st.number_input("What is the height of the cylinder?", min_value=0.01)
@@ -168,21 +174,20 @@ if mnmode == "Volume":
 
 
 if mnmode == "Surface Area":
+    #changes mode to surface area calculations
     shape = st.selectbox("Which 3D shape's surface area would you like to calculate?",("Prism", "Pyramid", "Cylinder", "Cone", "Sphere"))
 
     if shape == "Prism":
         base = st.number_input("Enter the number of sides your prism's base has", min_value=3)
         
-        if base < 3:
-            st.write("Invalid number of sides")
 
         if base == 3:
             st.latex(r"A = bh+H(b+x+y)")
-            st.markdown("""<p style="text-align: center; padding-bottom: 10px;">b = base, h = height, H = prism height, x = side 2 length, y = side 3 length</p>""", unsafe_allow_html=True)
+            st.markdown("""<p style="text-align: center; padding-bottom: 10px;">b = base length, h = base height, H = prism height, x = base's second side, y = base's third side</p>""", unsafe_allow_html=True)
             blength = st.number_input("What is the length of the base (perpendicular to the height)?", min_value=0.01)
             side2 = st.number_input("What is the length of the second edge of the base?", min_value=0.01)
             side3 = st.number_input("What is the length of the third edge of the base?", min_value=0.01)
-            bheight = st.number_input("What is the height of base shape?", min_value=0.01)
+            bheight = st.number_input("What is the height of base?", min_value=0.01)
             height = st.number_input("What is the height of the prism?", min_value=0.01)
             answer = 2*((blength*bheight)/2) + blength*height + side2*height + side3*height
             st.write("Your prism's SA is ", answer, " units².")
@@ -192,7 +197,7 @@ if mnmode == "Surface Area":
                 
             if fourmode == "Common":
                 st.latex(r"A = 2(bh+bH+hH))")
-                st.markdown("""<p style="text-align: center; padding-bottom: 10px;">b = base, h = height, H = prism height</p>""", unsafe_allow_html=True)
+                st.markdown("""<p style="text-align: center; padding-bottom: 10px;">b = base length, h = base height, H = prism height</p>""", unsafe_allow_html=True)
                 bl = st.number_input("What is the length of the base?", min_value=0.01)
                 bw = st.number_input("What is the width of the base?", min_value=0.01)
                 ph = st.number_input("What is the height of the prism?", min_value=0.01)
@@ -201,7 +206,7 @@ if mnmode == "Surface Area":
 
             if fourmode == "Trapezoid":
                 st.latex(r"A = h(a+b)+H(a+b+x+y)")
-                st.markdown("""<p style="text-align: center; padding-bottom: 10px;">a = top side, b = bottom side, x = third side, y = fourth side, h = height, H = prism height</p>""", unsafe_allow_html=True)
+                st.markdown("""<p style="text-align: center; padding-bottom: 10px;">a = base top side, b = base bottom side, x = base third side, y = base fourth side, h = base height, H = prism height</p>""", unsafe_allow_html=True)
                 a = st.number_input("What is the length of the top side of the base (a)?", min_value=0.01)
                 b = st.number_input("What is the length of the bottom side of the base (b)?", min_value=0.01)
                 s1 = st.number_input("What is the length of the right/left side of the trapezoid?", min_value=0.01)
@@ -231,7 +236,7 @@ if mnmode == "Surface Area":
 
         if base == 3:
             st.latex(r"A = \frac{bh+s(b+x+y)}{2}")
-            st.markdown("""<p style="text-align: center; padding-bottom: 10px;">b = base's base, h = base's height, s = slant height, x = second side, y = third side</p>""", unsafe_allow_html=True)
+            st.markdown("""<p style="text-align: center; padding-bottom: 10px;">b = base's length, h = base's height, s = slant, x = base's second side, y = base's third side</p>""", unsafe_allow_html=True)
             bw = st.number_input("What is the length of the base (perpendicular to that of the base's height)?", min_value=0.01)
             s2 = st.number_input("What is the length of the second side of the base?", min_value=0.01)
             s3 = st.number_input("What is the length of the third side of the base?", min_value=0.01)
@@ -246,16 +251,16 @@ if mnmode == "Surface Area":
                     
             if fourmode == "Common":
                 st.latex(r"A = bh+s(b+h)")
-                st.markdown("""<p style="text-align: center; padding-bottom: 10px;">b = base, h = height, s = slant</p>""", unsafe_allow_html=True)
+                st.markdown("""<p style="text-align: center; padding-bottom: 10px;">b = base length, h = base height, s = slant</p>""", unsafe_allow_html=True)
                 bl = st.number_input("What is the length of the base?", min_value=0.01)
                 bw = st.number_input("What is the width of the base?", min_value=0.01)
-                sl = st.number_input("What is the slant length of the prism?", min_value=0.01)
+                sl = st.number_input("What is the slant of the prism?", min_value=0.01)
                 answer = bl*bw + 2*(bl*sl)/2 + 2*(bw*sl)/2
                 st.write("Your pyramid's SA is ", answer, " units².")
 
             if fourmode == "Trapezoid":
                 st.latex(r"A = \frac{s(a+b+x+y)+h(a+b)}{2}")
-                st.markdown("""<p style="text-align: center; padding-bottom: 10px;">h = height, a = base top side, b = base bottom side, x = third side, y = fourth side, s = slant</p>""", unsafe_allow_html=True)
+                st.markdown("""<p style="text-align: center; padding-bottom: 10px;">h = base height, a = base top side, b = base bottom side, x = base's third side, y = base's fourth side, s = slant</p>""", unsafe_allow_html=True)
                 a = st.number_input("What is the length of the top side of the base (a)?", min_value=0.01)
                 b = st.number_input("What is the length of the bottom side of the base (b)?", min_value=0.01)
                 s1 = st.number_input("What is the length of the right/left side of the trapezoid?", min_value=0.01)
